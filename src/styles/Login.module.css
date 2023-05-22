@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
+
+
+.home_page img {
+    height: 100vh;
+    width: 100%;
+    background-position: center;
+    position: relative;
+    background-size: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    opacity: 0.5;
+}
+
+.home_txt {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+
+  
+  .loginbox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: white;
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+  }
+  
+  .loginboxh2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #ff3c78;
+    text-align: center;
+  }
+  
+.userbox {
+    position: relative;
+  }
+  
+  .sinput {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #000000;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #000000;
+    outline: none;
+    background: transparent;
+  }
+  .slabel {
+    position: absolute;
+    top:-20px;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #000000;
+    pointer-events: none;
+    transition: .5s;
+  }
+  
+  
+  .anchor {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #ffffff;
+    background-color: #000000;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 20px;
+    text-align: center;
+  
+  }
+  
+  
+  .anchor:hover {
+    background: #ff3c78;
+    color: #fff;
+    border-radius: 5px;
+  
+  }
+  

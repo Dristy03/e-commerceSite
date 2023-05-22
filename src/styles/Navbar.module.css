@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
+
+
+
+
+.navbar input[type="checkbox"],
+.navbar .hamburger-lines {
+    display: none;
+}
+
+.navbar {
+    box-shadow: 0 5px 4px rgb(146 161 176 / 15%);
+    position: sticky;
+    top: 0;
+    background: white;
+    color: black;
+    z-index: 100;
+}
+
+.navbarcontainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+}
+
+.navbar img {
+    margin-left: 3rem;
+}
+
+.menuitems {
+    order: 2;
+    display: flex;
+    margin-right: 3rem;
+    font-family: 'Acme', sans-serif;
+
+}
+
+.menuitems li {
+    list-style: none;
+    margin-left: 1.5rem;
+    font-size: 1.2rem;
+   
+}
+
+.navbarcontainer ul a {
+    text-decoration: none;
+    color: var(--black);
+    font-size: 18px;
+    position: relative;
+}
+
+.navbarcontainer ul a:after {
+    content: "";
+    position: absolute;
+    background: #ff3c78;
+    height: 3px;
+    width: 0;
+    left: 0;
+    bottom: -10px;
+    transition: 0.3s;
+}
+
+.navbarcontainer ul a:hover:after {
+    width: 100%;
+}
+
+
+.brand{
+
+    margin-left: 30px;
+    font-family: 'Acme', sans-serif;
+    font-size: 40px;
+  
+  }
