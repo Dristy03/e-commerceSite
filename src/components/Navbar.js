@@ -26,7 +26,8 @@ export default function Navbar() {
             <ul className={styles.menuitems}>
             <li><img src="/cart.png" alt="" height={25} width={30}/></li>
                 <li><a href="/home">Home</a></li>
-                <li><a href="/home">Profile</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/notification">Notification</a></li>
                 <li><a href="/login">Login</a></li>
                 <li><a href="/signup">SignUp</a></li>
             </ul>
