@@ -1,7 +1,28 @@
 import styles from "@/styles/Login.module.css";
 import Navbar from "@/components/Navbar";
+import { useRef } from "react";
 
 export default function Login() {
+  const emailRef = useRef()
+  const passwordRef = useRef()
+  const submitLogin = async (event) => {
+    event.preventDefault()
+  
+    const postData = {
+      method : "POST",
+      headers: {
+          "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+          email : emailRef.current.value,
+          password : passwordRef.current.value
+      })
+  }
+  const res = await fetch('http://localhost:3000/api/login',postData)
+  const response = await res.json();
+  console.log(response)
+
+  }
   return (
     <>
       <Navbar />
@@ -14,9 +35,9 @@ export default function Login() {
             <div className={styles.loginbox}>
               <h2 className={styles.loginboxh2}>Login</h2>
               <br />
-              <form method="post" action="Login">
+              <form method="post"  onSubmit={submitLogin}>
                 <div className={styles.userbox}>
-                  <input className={styles.sinput} name="email" required="" />
+                  <input className={styles.sinput} name="email" ref={emailRef} required="" />
                   <label className={styles.slabel}>Email Address</label>
                 </div>
                 <div className={styles.userbox}>
@@ -26,6 +47,7 @@ export default function Login() {
                     type="password"
                     name="password"
                     required=""
+                    ref={passwordRef}
                   />
                 </div>
 
@@ -33,7 +55,7 @@ export default function Login() {
                   <input
                     className={styles.anchor}
                     type="submit"
-                    value="Login"
+                    value="login"
                   />
 
                   <p>

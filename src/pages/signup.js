@@ -1,7 +1,43 @@
 import styles from "@/styles/Login.module.css";
 import Navbar from "@/components/Navbar";
+import { useRef } from "react";
 
-export default function Login() {
+export default function Signup() {
+  const emailRef = useRef()
+  const usernameRef = useRef()
+  const passwordRef = useRef()
+  const passwordConfirmRef = useRef()
+
+
+  const submitRegistration = async ( event) =>{
+      event.preventDefault()
+      let email =  emailRef.current.value
+      let username = usernameRef.current.value
+      let password =  passwordRef.current.value
+      let password_conf =  passwordConfirmRef.current.value
+
+      if(password !== password_conf){
+        console.log("password does not match")
+        return
+      }
+      const postData = {
+        method : "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            email : emailRef.current.value,
+            username: usernameRef.current.value,
+            password : passwordRef.current.value
+        })
+      }
+      const res = await fetch('http://localhost:3000/api/signup',postData)
+      const response = await res.json();
+      console.log(response)
+
+      
+  }
+
   return (
     <>
       <Navbar />
@@ -14,10 +50,14 @@ export default function Login() {
             <div className={styles.loginbox}>
               <h2 className={styles.loginboxh2}>Sign Up</h2>
               <br />
-              <form method="post" action="Login">
+              <form method="post" onSubmit={submitRegistration}>
                 <div className={styles.userbox}>
-                  <input className={styles.sinput} name="email" required="" />
+                  <input className={styles.sinput} name="email" required="" ref={emailRef}/>
                   <label className={styles.slabel}>Email Address</label>
+                </div>
+                <div className={styles.userbox}>
+                  <input className={styles.sinput} name="username" required="" ref={usernameRef}/>
+                  <label className={styles.slabel}>Username</label>
                 </div>
                 <div className={styles.userbox}>
                   <label>Password</label>
@@ -26,6 +66,7 @@ export default function Login() {
                     type="password"
                     name="password"
                     required=""
+                    ref={passwordRef}
                   />
                 </div>
                 <div className={styles.userbox}>
@@ -35,6 +76,7 @@ export default function Login() {
                     type="password"
                     name="password"
                     required=""
+                    ref={passwordConfirmRef}
                   />
                 </div>
 
