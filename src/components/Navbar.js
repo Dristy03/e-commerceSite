@@ -24,10 +24,10 @@ export default function Navbar() {
                 <span className="line line3"></span>
             </div>
             <ul className={styles.menuitems}>
-            <li><img src="/cart.png" alt="" height={25} width={30}/></li>
+            <li><img src="/cart.png" alt="" height={25} width={30}/><span className={styles.badgecart}>2</span></li>
                 <li><a href="/home">Home</a></li>
                 <li><a href="/profile">Profile</a></li>
-                <li><a href="/notification">Notification</a></li>
+                <li><a href="/notification">Notification</a><span className={styles.badge}>0</span></li>
                 <li><a href="/login">Login</a></li>
                 <li><a href="/signup">SignUp</a></li>
             </ul>

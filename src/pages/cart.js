@@ -1,7 +1,31 @@
 import styles from "@/styles/Cart.module.css";
 import Navbar from "@/components/Navbar";
+import {React,useState,useEffect} from "react";
 
 export default function Cart() {
+  let [count, setCount] = useState(0);
+  // fetching of the prices needed to be done
+  let [price, setPrice] = useState(3500);
+  let [totalPrice, setTotalPrice] = useState(0);
+
+
+  function incrementCount() {
+    count = count + 1;
+    setCount(count);
+    setPrice (count * 3500)
+    
+  }
+  function decrementCount() {
+    if(count>1)
+    {
+      count = count - 1;
+      setCount(count);
+      setPrice (count * 3500)
+
+    }
+   
+  }
+
   return (
     <>
       <Navbar />
@@ -22,16 +46,16 @@ export default function Cart() {
           <h1 className={styles.description}>Hoodie Jacket</h1>
 
           <div className={styles.quantity}>
-            <button className={styles.plusbtn} type="button" name="button">
+            <button className={styles.plusbtn} type="button" name="button" onClick={decrementCount}>
               -
             </button>
-            <input type="text" name="name" value="1" />
-            <button className={styles.minusbtn} type="button" name="button">
+            <input type="text" name="name" value={count} />
+            <button className={styles.minusbtn} type="button" name="button" onClick={incrementCount}>
               +
             </button>
           </div>
 
-          <div className={styles.totalprice}>Tk 3500</div>
+          <div className={styles.totalprice}>Tk {price}</div>
 
           <span className={styles.deletebtn}> Remove </span>
         </div>
