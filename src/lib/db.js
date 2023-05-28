@@ -6,6 +6,7 @@ export async function query({ query, values = [] }) {
       host: "localhost",
       database: 'e_commerce',
       user: 'root',
+      // password: 'ananna11',
       password: 'drishub',
     });
   
