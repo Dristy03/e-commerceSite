@@ -1,13 +1,15 @@
 import styles from "@/styles/Login.module.css";
 import Navbar from "@/components/Navbar";
 import { useRef } from "react";
+import { useRecoilState } from "recoil";
+import { userState } from "@/atoms/userAtom";
 
 export default function Signup() {
   const emailRef = useRef()
   const usernameRef = useRef()
   const passwordRef = useRef()
   const passwordConfirmRef = useRef()
-
+  const [user,setUser] = useRecoilState(userState)
 
   const submitRegistration = async ( event) =>{
       event.preventDefault()
@@ -34,6 +36,10 @@ export default function Signup() {
       const res = await fetch('http://localhost:3000/api/signup',postData)
       const response = await res.json();
       console.log(response)
+      if(res.status == 200){
+        setUser(response['user'])
+        console.table(response['user'])
+      }
 
       
   }

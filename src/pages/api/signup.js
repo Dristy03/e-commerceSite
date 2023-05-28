@@ -6,13 +6,20 @@ export default async function handler(req, res) {
     const username = req.body.username
     const password = req.body.password
     console.log(email, password)
-    const user = await query({
+    const created = await query({
       query: "INSERT INTO `e_commerce`.`user` (`email`, `username`, `password`, `type`) VALUES (?,?,?,?);",
       values: [email, username, password, "buyer"]
     })
-    console.log(user)
-    if(user.affectedRows)
-        res.status(200).json({ 'msg': 'success'})
+    console.log(created)
+    if(created.affectedRows)
+      {
+        const user = await query({
+          query: "Select * from user where email = ?",
+          values: [email]
+        })
+        res.status(200).json({ 'msg': 'success',user: user[0]})
+      }
+        
     else 
         res.status(201).json({'msg':"Something went wrong", error: user['error']})
   }

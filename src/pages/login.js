@@ -1,8 +1,11 @@
 import styles from "@/styles/Login.module.css";
 import Navbar from "@/components/Navbar";
 import { useRef } from "react";
+import { useRecoilState } from "recoil";
+import { userState } from "@/atoms/userAtom";
 
 export default function Login() {
+  const [user,setUser] = useRecoilState(userState)
   const emailRef = useRef()
   const passwordRef = useRef()
   const submitLogin = async (event) => {
@@ -20,7 +23,11 @@ export default function Login() {
   }
   const res = await fetch('http://localhost:3000/api/login',postData)
   const response = await res.json();
-  console.log(response)
+  //console.table(response)
+  if(res.status == 200){
+    setUser(response)
+    
+  }
 
   }
   return (
