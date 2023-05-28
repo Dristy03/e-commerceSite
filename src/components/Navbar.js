@@ -1,8 +1,13 @@
 import Head from "next/head";
 import styles from '@/styles/Navbar.module.css'
+import {useState, useEffect} from "react"
+import { useRouter } from 'next/router';
 
 
 export default function Navbar() {
+
+
+
   return (
     <> 
          <Head>
@@ -28,8 +33,9 @@ export default function Navbar() {
                 <li><a href="/home">Home</a></li>
                 <li><a href="/profile">Profile</a></li>
                 <li><a href="/notification">Notification</a><span className={styles.badge}>0</span></li>
-                <li><a href="/login">Login</a></li>
-                <li><a href="/signup">SignUp</a></li>
+                  <li><a href="/login">Login</a></li>
+                  <li><a href="/signup">SignUp</a></li>
+        
             </ul>
             
         </div>

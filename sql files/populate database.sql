@@ -1,1 +1,2 @@
 INSERT INTO `e_commerce`.`user` (`email`, `username`, `password`, `type`) VALUES ('t@gmail.com', 'tanhab', 'qwerty', 'buyer');
+INSERT INTO `e_commerce`.`user` (`email`, `username`, `password`, `type`) VALUES ('a@gmail.com', 'dristy', 'qwerty', 'buyer');

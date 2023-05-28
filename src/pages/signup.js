@@ -1,10 +1,13 @@
 import styles from "@/styles/Login.module.css";
 import Navbar from "@/components/Navbar";
 import { useRef } from "react";
+import { useRouter } from 'next/router';
+
 import { useRecoilState } from "recoil";
 import { userState } from "@/atoms/userAtom";
 
 export default function Signup() {
+  const router = useRouter();
   const emailRef = useRef()
   const usernameRef = useRef()
   const passwordRef = useRef()
@@ -36,11 +39,10 @@ export default function Signup() {
       const res = await fetch('http://localhost:3000/api/signup',postData)
       const response = await res.json();
       console.log(response)
-      if(res.status == 200){
+      if (res.status == 200) {
         setUser(response['user'])
-        console.table(response['user'])
-      }
-
+        router.push('/home') 
+      } 
       
   }
 
