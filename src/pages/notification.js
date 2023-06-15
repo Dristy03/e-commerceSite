@@ -8,15 +8,9 @@ export default function Notification() {
 
       <h2 style={{paddingTop: "50px", paddingLeft: "100px"}}>Recent Notification</h2>
       <div className={styles.container}>
-				
-				
-			
-
 				<div className={styles.box}>
 					<h3> Your request for purchase is proceeded!</h3>
 				</div>
-			
-
 			</div>
 
 		
