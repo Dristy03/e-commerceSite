@@ -41,6 +41,7 @@ export default function Signup() {
       console.log(response)
       if (res.status == 200) {
         setUser(response['user'])
+        localStorage.setItem('email', response.user['email']);
         router.push('/home') 
       } 
       

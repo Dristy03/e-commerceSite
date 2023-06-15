@@ -35,10 +35,9 @@ CREATE TABLE `e_commerce`.`bank` (
     ON UPDATE NO ACTION);
 
 CREATE TABLE `e_commerce`.`transaction` (
-  `t_id` INT NOT NULL,
+  `t_id` INT NOT NULL AUTO_INCREMENT,
   `buyer` VARCHAR(45) NULL,
   `supplier` VARCHAR(45) NULL,
-  `amount` INT NULL,
   `buyer_verified` INT NULL DEFAULT 0,
   `supplier_verified` INT NULL DEFAULT 0,
   `completed` INT NULL DEFAULT 0,
@@ -55,3 +54,48 @@ CREATE TABLE `e_commerce`.`transaction` (
     REFERENCES `e_commerce`.`user` (`email`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+    
+CREATE TABLE `e_commerce`.`transaction_product` (
+  `t_id` INT NOT NULL,
+  `p_id` INT NOT NULL,
+  `amount` INT NULL,
+  INDEX `p_id_idx` (`p_id` ASC) VISIBLE,
+  CONSTRAINT `t_id`
+    FOREIGN KEY (`t_id`)
+    REFERENCES `e_commerce`.`transaction` (`t_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `p_id`
+    FOREIGN KEY (`p_id`)
+    REFERENCES `e_commerce`.`product` (`p_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+    
+CREATE TABLE `e_commerce`.`notification` (
+  `n_id` INT NOT NULL AUTO_INCREMENT,
+  `sender` VARCHAR(45) NOT NULL,
+  `reciever` VARCHAR(45) NOT NULL,
+  `t_id` INT NULL,
+  `message` VARCHAR(405) NULL,
+  `seen` INT NULL DEFAULT 0,
+  INDEX `sender_idx` (`sender` ASC) VISIBLE,
+  INDEX `reciever_idx` (`reciever` ASC) VISIBLE,
+  INDEX `t_id_idx` (`t_id` ASC) VISIBLE,
+  PRIMARY KEY (`n_id`),
+  CONSTRAINT `sender`
+    FOREIGN KEY (`sender`)
+    REFERENCES `e_commerce`.`user` (`email`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `reciever`
+    FOREIGN KEY (`reciever`)
+    REFERENCES `e_commerce`.`user` (`email`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `transaction_id`
+    FOREIGN KEY (`t_id`)
+    REFERENCES `e_commerce`.`transaction` (`t_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
