@@ -1,7 +1,11 @@
 import styles from "@/styles/Profile.module.css";
 import Navbar from "@/components/Navbar";
+import { useRecoilState } from "recoil";
+import { userState } from "@/atoms/userAtom";
 
 export default function Profile() {
+  const [user,setUser] = useRecoilState(userState)
+
   return (
     <>
       <Navbar />
