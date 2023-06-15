@@ -17,6 +17,10 @@ export default async function handler(req, res) {
           query: "Select * from user where email = ?",
           values: [email]
         })
+        await query({
+          query: "insert into e_commerce.bank (email,balance) VALUES(?,1000);",
+          values: [email]
+        })
         res.status(200).json({ 'msg': 'success',user: user[0]})
       }
         

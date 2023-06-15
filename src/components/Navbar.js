@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { useRecoilState, useRecoilValue } from "recoil";
 import { userState } from "@/atoms/userAtom";
 import { cartProductNumber } from "@/atoms/cartAtom";
-
+import Link from 'next/link';
 
 export default function Navbar() {
   const [user,setUser] = useRecoilState(userState)
@@ -34,10 +34,12 @@ export default function Navbar() {
             <ul className={styles.menuitems}>
                 {user && 
                 <>
-                  <li><img src="/cart.png" alt="" height={25} width={30}/><span className={styles.badgecart}>{cartProductNo}</span></li>
-                  <li><a href="/home">Home</a></li>
-                  <li><a href="/profile">Profile</a></li>
-                  <li><a href="/notification">Notification</a><span className={styles.badge}>0</span></li>
+                  <li><Link href="/cart"><img src="/cart.png" alt="" height={25} width={30}/><span className={styles.badgecart}>{cartProductNo}</span></Link></li>
+                  <li><Link href="/home">Home</Link></li>
+                  
+                  <li><Link href="/profile">Profile</Link></li>
+                  <li><Link href="/notification">Notification</Link><span className={styles.badge}>0</span></li>
+                  <li><button onClick={()=>{localStorage.removeItem('user')}}>Logout</button></li>
                 </>}
                 
                 { !user &&  

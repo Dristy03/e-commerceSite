@@ -25,10 +25,10 @@ export default function Login() {
     };
     const res = await fetch("http://localhost:3000/api/login", postData);
     const response = await res.json();
-    console.log(response);
-    console.log(res)
+    console.log(response.user);
     if (res.status == 200) {
-      setUser(response)
+      setUser(response.user)
+      localStorage.setItem('email', response.user['email']);
       router.push('/home') 
     } 
   };

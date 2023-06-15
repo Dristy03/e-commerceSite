@@ -14,6 +14,20 @@ const cartProductNumber = selector({
     },
   });
 
+
+
+const grandTotal = selector({
+    key: 'grandTotal',
+    get: ({get}) => {
+    const cart = get(cartState);  
+    let total = 0
+    cart.map((item)=>{
+        total = total+ item.price * item.count
+    })
+    return total
+    },
+  });
+
 export {
-    cartProductNumber
+    cartProductNumber, grandTotal
 }

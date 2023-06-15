@@ -20,6 +20,10 @@ export default  function Home() {
         fetchProducts();
     },[])
 
+    const handleItemClick = (item) =>{
+        console.table(item)
+    }
+
   return (
     <>
  
@@ -30,7 +34,7 @@ export default  function Home() {
             <div className={styles.bestseller}>
 
                 { products && products.map((item)=>(
-                    <ProductItem key={item.p_id} props={item}/>
+                    <ProductItem key={item.p_id} props={item} />
                 ))}
 
                 
