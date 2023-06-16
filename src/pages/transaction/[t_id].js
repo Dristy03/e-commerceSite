@@ -3,6 +3,10 @@ import Navbar from "@/components/Navbar";
 import { useRouter } from "next/router";
 
 export default function Transaction() {
+    const router = useRouter();
+    const { t_id } = router.query;
+    const [transaction,setTransaction] = useState({})
+
   return (
     <>
       <Navbar />
