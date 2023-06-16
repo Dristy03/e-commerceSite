@@ -65,7 +65,7 @@ export default function Cart() {
                 <button className={styles.plusbtn} type="button" name="button" onClick={()=>decrementCount(item)}>
                   -
                 </button>
-                <input type="text" name="name" value={item.count} />
+                <input type="text" name="name" defaultValue={item.count} />
                 {/* <h3> {item.count} </h3> */}
                 <button className={styles.minusbtn} type="button" name="button" onClick={()=>incrementCount(item)}>
                   +

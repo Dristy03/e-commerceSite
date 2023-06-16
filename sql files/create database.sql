@@ -25,10 +25,13 @@
     ON UPDATE NO ACTION);
     
 CREATE TABLE `e_commerce`.`bank` (
-  `email` VARCHAR(45) NULL,
-  `balance` INT NULL,
-  INDEX `bank-user_idx` (`email` ASC) VISIBLE,
-  CONSTRAINT `bank-user`
+  `account_no` INT NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `balance` INT NULL DEFAULT 0,
+  `secret` VARCHAR(45) NULL,
+  PRIMARY KEY (`account_no`),
+  INDEX `bank_email_idx` (`email` ASC) VISIBLE,
+  CONSTRAINT `bank_email`
     FOREIGN KEY (`email`)
     REFERENCES `e_commerce`.`user` (`email`)
     ON DELETE NO ACTION
@@ -37,6 +40,7 @@ CREATE TABLE `e_commerce`.`bank` (
 CREATE TABLE `e_commerce`.`transaction` (
   `t_id` INT NOT NULL AUTO_INCREMENT,
   `buyer` VARCHAR(45) NULL,
+  `total` INT NOT NULL,
   `supplier` VARCHAR(45) NULL,
   `buyer_verified` INT NULL DEFAULT 0,
   `supplier_verified` INT NULL DEFAULT 0,

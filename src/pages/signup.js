@@ -42,7 +42,7 @@ export default function Signup() {
       if (res.status == 200) {
         setUser(response['user'])
         localStorage.setItem('email', response.user['email']);
-        router.push('/home') 
+        router.push('/bank') 
       } 
       
   }

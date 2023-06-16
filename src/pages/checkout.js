@@ -9,9 +9,9 @@ import { useRouter } from 'next/router';
 
 export default function Checkout() {
   const router = useRouter();
-
-  const [balance,setBalance] = useState(0)
   const grandTotalPrice = useRecoilValue(grandTotal)
+  const [account,setAccount] = useState({})
+  
   const addMoney= async () =>{
     const postData = {
       method: "POST",
@@ -26,16 +26,17 @@ export default function Checkout() {
     try{
       const response = await fetch('http://localhost:3000/api/bank/add',postData)
       const bal = await response.json()
-      setBalance(bal)
+      setAccount(bal)
   }catch(error){
       console.error('Error fetching products :', error); 
   }
   }
   const makePayment = () =>{
-    if(grandTotal>balance){
+    if(grandTotal>account.balance){
       console.log("Not enough money")
       return 
     }
+    
     router.push('/transaction') 
 
     
@@ -56,13 +57,13 @@ export default function Checkout() {
           const response = await fetch('http://localhost:3000/api/bank',postData)
           const bal = await response.json()
           
-          setBalance(bal)
+          setAccount(bal)
       }catch(error){
           console.error('Error fetching products :', error); 
       }
   }
   fetchBalance();
-  },[balance,setBalance])
+  },[])
 
 
   return (
@@ -75,7 +76,7 @@ export default function Checkout() {
     <div className={styles.box}>
 
     <div>
-              <h2>You current balance : {balance}</h2>
+              <h2>You current balance : {account.balance}</h2>
               <br/>
               <h2>You total cost : {grandTotalPrice}</h2>
             </div>
