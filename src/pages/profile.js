@@ -10,7 +10,7 @@ export default function Profile() {
     <>
       <Navbar />
 
-      <h2 style={{paddingTop: "50px", paddingLeft: "100px"}}>Edit Profile</h2>
+      <h2 style={{paddingTop: "50px", paddingLeft: "100px"}}>Profile and Bank Details</h2>
 
       <div className={styles.container}>
               
@@ -26,8 +26,23 @@ export default function Profile() {
 
                   <div className={styles.userbox}>
                   <input className={styles.sinput} name="id" required="" />
-                  <label className={styles.slabel}>Transaction Id</label>
-                </div>                   
+                  <label className={styles.slabel}>Account Number</label>
+                </div>  
+
+                <div className={styles.userbox}>
+                  <input className={styles.sinput} name="id" type="password" required="" />
+                  <label className={styles.slabel}>Secret</label>
+                </div>  
+                <div className={styles.userbox}>
+                  <input className={styles.sinput} name="id" value={5000} />
+                  <label className={styles.slabel}>Current Amount</label>
+                </div>  
+
+               
+
+              Do you want to add money in your account? 
+
+              <button style={{marginLeft: "10px"}}>Add Now</button>             
                 </div>
                
                 <div className={styles}><button className={styles.profilebutton} type="button">Save Profile</button></div>

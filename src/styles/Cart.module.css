@@ -64,6 +64,12 @@
   .quantity {
     padding-top: 25px;
     margin-right: 60px;
+    /* display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-between;
+    justify-content: space-evenly;
+    align-items: center; */
   }
   .quantity input {
     /* -webkit-appearance: none; */
@@ -74,6 +80,8 @@
     font-size: 16px;
     color: #000000;
     font-weight: 300;
+
+
   }
 
    
@@ -86,6 +94,7 @@
     font-size: 20px;
     color: #000000;
     font-weight: 300;
+   
   }
 
 .bottom {
@@ -108,3 +117,4 @@
    
     
 }
+

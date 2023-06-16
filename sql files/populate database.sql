@@ -1,4 +1,5 @@
 INSERT INTO `e_commerce`.`user` (`email`, `username`, `password`, `type`) VALUES ('t@gmail.com', 'tanhab', 'qwerty', 'buyer');
+INSERT INTO `e_commerce`.`user` (`email`, `username`, `password`, `type`) VALUES ('a@gmail.com', 'dristy', 'qwerty', 'buyer');
 INSERT INTO `e_commerce`.`user` (`email`, `username`, `password`, `type`) VALUES ('s@gmail.com', 'supplier', 'qwerty', 'buyer');
 
 insert into e_commerce.bank (email,balance) VALUES("s@gmail.com",1000);

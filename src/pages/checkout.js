@@ -1,11 +1,15 @@
-import styles from '@/styles/Welcome.module.css'
+import styles from '@/styles/Checkout.module.css'
 import Navbar from '@/components/Navbar'
 import { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import { grandTotal } from '@/atoms/cartAtom'
+import { useRouter } from 'next/router';
 
 
-export default function Welcome() {
+
+export default function Checkout() {
+  const router = useRouter();
+
   const [balance,setBalance] = useState(0)
   const grandTotalPrice = useRecoilValue(grandTotal)
   const addMoney= async () =>{
@@ -32,6 +36,8 @@ export default function Welcome() {
       console.log("Not enough money")
       return 
     }
+    router.push('/transaction') 
+
     
   }
 
@@ -63,7 +69,25 @@ export default function Welcome() {
     <>
  
    <Navbar/>
-    <section>
+
+   <div className={styles.container}>
+
+    <div className={styles.box}>
+
+    <div>
+              <h2>You current balance : {balance}</h2>
+              <br/>
+              <h2>You total cost : {grandTotalPrice}</h2>
+            </div>
+            <button className={styles.btn} onClick={makePayment}>Pay Now</button>
+
+    </div>
+              
+            
+          </div>
+    {/* <section>
+
+
         <div className={styles.home_page}>
             <div >
               <h2>THis is a dummy button which will add 1000 to your account</h2>
@@ -77,7 +101,7 @@ export default function Welcome() {
             </div>
             <button onClick={makePayment}>Pay Now</button>
         </div>
-    </section>
+    </section> */}
     </>
   )
 }
