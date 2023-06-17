@@ -64,16 +64,16 @@
   .quantity {
     padding-top: 25px;
     margin-right: 60px;
-    /* display: flex;
+    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-content: space-between;
     justify-content: space-evenly;
-    align-items: center; */
+    align-items: center;
   }
-  .quantity input {
+  .qinput {
     /* -webkit-appearance: none; */
-    padding-top: 20px;
+   
     border: #000000;
     text-align: center;
     width: 32px;

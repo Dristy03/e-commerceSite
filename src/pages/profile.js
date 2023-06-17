@@ -61,25 +61,25 @@ export default function Profile() {
               
                 <div className={styles.box}>
                 <div className={styles.userbox}>
-                  <h3>{user.username}</h3>
+                  <p className={styles.sinput}>{user.username}</p>
                   <label className={styles.slabel}>Name</label>
                 </div>    
                 <div className={styles.userbox}>
-                  <h3>{user.email}</h3>
+                  <p className={styles.sinput}>{user.email}</p>
                   <label className={styles.slabel}>Email Address</label>
                 </div>    
 
                   <div className={styles.userbox}>
-                  <h3>{account.account_no}</h3>
+                  <p className={styles.sinput}>{account.account_no}</p>
                   <label className={styles.slabel}>Account Number</label>
                 </div>  
 
                 <div className={styles.userbox}>
-                  <h3>{account.secret}</h3>
+                  <p className={styles.sinput}>{account.secret}</p>
                   <label className={styles.slabel}>Secret</label>
                 </div>  
                  <div className={styles.userbox}>
-                 <h3>{account.balance}</h3>
+                 <p className={styles.sinput}>{account.balance}</p>
                  <label className={styles.slabel}>Current Amount</label>
                 </div>  
 
@@ -87,10 +87,9 @@ export default function Profile() {
 
               Do you want to add money in your account? 
 
-              <button style={{marginLeft: "10px"}} onClick={()=>addMoney()}>Add Now</button>             
+              <button style={{marginLeft: "10px", background:"#f05e8a", color:"#fff", padding: 8, borderRadius: 5}} onClick={()=>addMoney()}>Add Now</button>             
                 </div>
                
-                <div className={styles}><button  className={styles.profilebutton} type="button">Save Profile</button></div>
             </div>
     
       

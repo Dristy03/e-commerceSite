@@ -5,10 +5,14 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import { cartState, grandTotal } from '@/atoms/cartAtom'
 import { useRouter } from 'next/router';
 import { createNotification } from '@/components/Notification'
+import Swal from 'sweetalert2'
+
 
 
 
 export default function Checkout() {
+  const Swal = require('sweetalert2')
+
   const router = useRouter();
   const grandTotalPrice = useRecoilValue(grandTotal)
   const [account,setAccount] = useState({})
@@ -40,6 +44,12 @@ export default function Checkout() {
     
     if(grandTotalPrice >= account.balance){
       console.log("Not enough money")
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Not enough money!',
+        confirmButtonColor: '#f05e8a'
+      })
       return 
     }
     const postData = {
