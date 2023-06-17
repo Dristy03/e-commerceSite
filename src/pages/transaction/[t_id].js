@@ -2,6 +2,7 @@ import styles from "@/styles/Transaction.module.css";
 import Navbar from "@/components/Navbar";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { createNotification } from "@/components/Notification";
 
 export default function Transaction() {
     const router = useRouter();
@@ -40,10 +41,10 @@ export default function Transaction() {
               t_id: t_id,
             }),
           };
-         
         try{
             const response = await fetch('http://localhost:3000/api/transaction/supplier_verify',postData)
             const tn = await response.json()
+            createNotification(tn.supplier,tn.buyer,tn.t_id,"Your ordered products are on the way. Please confirm when recieved")
             setTransaction(tn)
         }catch(error){
             console.error('Error fetching products :', error); 
@@ -60,12 +61,12 @@ export default function Transaction() {
               t_id: t_id,
             }),
           };
-         
         try{
             const response = await fetch('http://localhost:3000/api/transaction/buyer_verify',postData)
             const tn = await response.json()
 
             addMoney(transaction.supplier,transaction.total)
+            createNotification(tn.buyer,tn.supplier,tn.t_id,"Congratulations!Customer has recieved your order. Payment has been added to your bank")
             setTransaction(tn)
         }catch(error){
             console.error('Error fetching products :', error); 
@@ -88,6 +89,7 @@ export default function Transaction() {
             const tn = await response.json()
 
             addMoney(transaction.buyer,transaction.total)
+            createNotification(tn.supplier,tn.buyer,tn.t_id,"Sorry, the supplier has cancelled your order. Your money has been refunded")
             setTransaction(tn)
         }catch(error){
             console.error('Error fetching products :', error); 
@@ -121,8 +123,8 @@ export default function Transaction() {
     <>
       <Navbar />
         {!loading && <>
-      <h3 style={{ paddingTop: "50px", paddingLeft: "100px" }}>Buyer:</h3>
-      <h3 style={{ paddingLeft: "100px" }}>Supplier:</h3>
+      <h3 style={{ paddingTop: "50px", paddingLeft: "100px" }}>Buyer: {transaction.buyer}</h3>
+      <h3 style={{ paddingLeft: "100px" }}>Supplier: {transaction.supplier}</h3>
 
       <div className={styles.container}>
         <h3>Items To be Purchased</h3>
@@ -169,7 +171,12 @@ export default function Transaction() {
       </div>
 
       <div style={{ paddingTop: "50px", paddingLeft: "100px" }}>
-        <h1>Status  <span className={styles.badge}> {transaction.completed ? "Completed": "Pending"}</span></h1>
+        <h1>Status  <span className={styles.badge}>
+         { transaction.completed === 1 && transaction.supplier_verified === 1 && transaction.buyer_verified === 1 && "Completed"}
+           {transaction.completed ===1 && transaction.supplier_verified === 0 && "Cancelled"}
+           {transaction.completed ===0 && "Pending"}
+           </span>
+           </h1>
     <hr></hr>
        {transaction.buyer === localStorage.getItem('email') ? <div>
         <h3 style={{'color':"blue"}}> You have already paid for the products. Please wait for the supplier to send your products. </h3>
@@ -179,7 +186,7 @@ export default function Transaction() {
        
 
        {
-       transaction.supplier === localStorage.getItem('email') && 
+       transaction.supplier === localStorage.getItem('email') && transaction.completed === 0 && 
        
        (transaction.supplier_verified === 0 ? <div>
         <h3> Please confirm after you have sent the products to the user.  <button onClick={supplier_verify} style={{color:'green', marginLeft: 10}}>Confirm</button>  <button onClick={cancel} style={{color:'red', marginLeft: 10}}>Cancel</button></h3>
@@ -200,6 +207,12 @@ export default function Transaction() {
         transaction.completed === 1 && transaction.supplier_verified === 1 && transaction.buyer_verified === 1 && 
         <div>
         <h3 style={{'color':"green"}}> The transaction was successfull. </h3>
+       </div>
+       }
+       {
+        transaction.completed === 1 && transaction.supplier_verified === 0 && transaction.buyer_verified === 0 && 
+        <div>
+        <h3 style={{'color':"red"}}> The transaction was cancelled. </h3>
        </div>
        }
       </div>

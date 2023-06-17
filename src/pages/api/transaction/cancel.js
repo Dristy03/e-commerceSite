@@ -4,7 +4,7 @@ import { query } from "@/lib/db"
 export default async function handler(req, res) {
     const t_id = req.body.t_id
     await query({
-        query: "UPDATE `e_commerce`.`transaction` `completed` = 1  WHERE `t_id` = ?;",
+        query: "UPDATE `e_commerce`.`transaction` SET `completed` = 1  WHERE `t_id` = ?;",
         values: [t_id]
         })
     const response  = await query({

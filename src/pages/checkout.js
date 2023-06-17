@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { cartState, grandTotal } from '@/atoms/cartAtom'
 import { useRouter } from 'next/router';
+import { createNotification } from '@/components/Notification'
 
 
 
@@ -70,11 +71,13 @@ export default function Checkout() {
         }
         // upload each product with count to t_id
         await fetch('http://localhost:3000/api/transaction/product',productData)
-          
+          // create notification 
+        
       })
-
+      createNotification(localStorage.getItem('email'),'s@gmail.com',t_id,"You have a new order")
       // subtract the total from buyer account
       addMoney(-grandTotalPrice)
+      
       router.push('/transaction/' + t_id);
   }catch(error){
       console.error('Error fetching products :', error); 

@@ -85,7 +85,7 @@ export default function Navbar() {
                 <li className={styles.dropdown}>
                   <a href="#" className={styles.dropbtn}>
                     Notification
-                    <span className={styles.badge}>0</span>
+                    <span className={styles.badge}>{notifications.filter(obj => obj.seen === 0).length}</span>
                   </a>
                 <div className={styles.dropdowncontent}>
                   {notifications && notifications.map((item,index)=>(
@@ -96,9 +96,6 @@ export default function Navbar() {
                 </li>
                 <li>
                   <Link href="/home">Home</Link>
-                </li>
-                <li>
-                  <Link href="/transaction/4">Test</Link>
                 </li>
                 <li>
                   <Link href="/profile">Profile</Link>

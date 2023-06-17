@@ -62,7 +62,7 @@ CREATE TABLE `e_commerce`.`transaction` (
 CREATE TABLE `e_commerce`.`transaction_product` (
   `t_id` INT NOT NULL,
   `p_id` INT NOT NULL,
-  `amount` INT NULL,
+  `count` INT NULL,
   INDEX `p_id_idx` (`p_id` ASC) VISIBLE,
   CONSTRAINT `t_id`
     FOREIGN KEY (`t_id`)
