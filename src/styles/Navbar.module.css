@@ -112,15 +112,19 @@
     color: black;
     padding: 16px;
     margin: 5px;
-    text-decoration: none;
     display: block;
     text-align: left;
+    border-bottom: 1px solid #000;
     cursor: pointer;
+  }
+
+  .dropdowncontent li:last-child {
+border-bottom: none;
   }
   
   .dropdowncontent li:hover {
-  background-color: gray;
-  color:white;
+    color: #ff3c78;
+
   }
   
   .dropdown:hover .dropdowncontent {

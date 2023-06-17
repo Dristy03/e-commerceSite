@@ -89,7 +89,7 @@ export default function Navbar() {
                   </a>
                 <div className={styles.dropdowncontent}>
                   {notifications && notifications.map((item,index)=>(
-                    <li key={index} onClick={()=> clickNotification(item)} style={{'color': item.seen ===0? "red":"green"}}>{item.message}</li>
+                    <li key={index} onClick={()=> clickNotification(item)} style={{'backgroundColor': item.seen ===0? "#D3D3D3":"white"}}>{item.message}</li>
                   ))}
                    
                   </div>
