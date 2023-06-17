@@ -16,6 +16,6 @@ export default async function handler(req, res) {
         values: [t_id]
         })
 
-    res.status(200).json({transaction: transaction, products: products[0]})
+    res.status(200).json({transaction: transaction, products: products})
 
 }

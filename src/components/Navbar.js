@@ -10,7 +10,45 @@ import Link from "next/link";
 export default function Navbar() {
   const router = useRouter();
   const [user, setUser] = useRecoilState(userState);
+  const [notifications, setNotifications] = useState([])
   const cartProductNo = useRecoilValue(cartProductNumber);
+
+  const clickNotification = async(noti)=>{
+    // make seen 1
+    await fetch('http://localhost:3000/api/notification/'+noti.n_id)
+
+    // move to page
+    console.table(noti)
+    console.log(noti.t_id)
+    router.push('/transaction/' + noti.t_id);
+  }
+
+  useEffect(()=>{
+    const postData = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        reciever: localStorage.getItem('email'),
+      }),
+    }
+    const fetchNotifications = async () => {
+    try{
+        const response = await fetch('http://localhost:3000/api/notification/all',postData)
+        const bal = await response.json()
+        console.log(bal)
+        
+        setNotifications(bal)
+        
+        
+    }catch(error){
+        console.error('Error fetching noti :', error); 
+    }
+    }
+    fetchNotifications();
+},[])
+
 
   return (
     <>
@@ -50,14 +88,18 @@ export default function Navbar() {
                     <span className={styles.badge}>0</span>
                   </a>
                 <div className={styles.dropdowncontent}>
-                   <li>Your request for purchase is proceeded!</li>
-                   <li>Your request for purchase is proceeded!</li>
+                  {notifications && notifications.map((item,index)=>(
+                    <li key={index} onClick={()=> clickNotification(item)} style={{'color': item.seen ===0? "red":"green"}}>{item.message}</li>
+                  ))}
+                   
                   </div>
                 </li>
                 <li>
                   <Link href="/home">Home</Link>
                 </li>
-
+                <li>
+                  <Link href="/transaction/4">Test</Link>
+                </li>
                 <li>
                   <Link href="/profile">Profile</Link>
                 </li>

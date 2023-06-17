@@ -13,6 +13,9 @@ export default function Checkout() {
   const [account,setAccount] = useState({})
   const [cart,setCart] = useRecoilState(cartState)
   
+  
+
+
   const addMoney= async (val) =>{
     const postData = {
       method: "POST",
