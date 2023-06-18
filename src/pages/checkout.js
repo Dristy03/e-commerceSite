@@ -133,9 +133,9 @@ export default function Checkout() {
     <div className={styles.box}>
 
     <div>
-              <h2>You current balance : {account.balance}</h2>
+              <h2>Your current balance : {account.balance}</h2>
               <br/>
-              <h2>You total cost : {grandTotalPrice}</h2>
+              <h2>Your total cost : {grandTotalPrice}</h2>
             </div>
             <button className={styles.btn} onClick={makePayment}>Pay Now</button>
 

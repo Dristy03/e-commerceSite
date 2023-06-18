@@ -3,12 +3,13 @@ import Navbar from "@/components/Navbar";
 import { useRecoilState } from "recoil";
 import { userState } from "@/atoms/userAtom";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 export default function Profile() {
   const [user,setUser] = useRecoilState(userState)
   const [account,setAccount] = useState({})
   
-  const addMoney= async () =>{
+  const addMoney= async (amount) =>{
     const postData = {
       method: "POST",
       headers: {
@@ -16,7 +17,7 @@ export default function Profile() {
       },
       body: JSON.stringify({
         email: localStorage.getItem('email'),
-        amount: 1000
+        amount: amount
       }),
     }
     try{
@@ -55,7 +56,7 @@ export default function Profile() {
     <>
       <Navbar />
 
-      <h2 style={{paddingTop: "50px", paddingLeft: "100px"}}>Profile and Bank Details</h2>
+      <h2 style={{paddingTop: "50px", paddingLeft: "100px"}}>Bank Details</h2>
 
       <div className={styles.container}>
               
@@ -87,7 +88,16 @@ export default function Profile() {
 
               Do you want to add money in your account? 
 
-              <button style={{marginLeft: "10px", background:"#f05e8a", color:"#fff", padding: 8, borderRadius: 5}} onClick={()=>addMoney()}>Add Now</button>             
+              <button style={{marginLeft: "10px", background:"#f05e8a", color:"#fff", padding: 8, borderRadius: 5}} onClick={()=>Swal.fire({
+  title: 'Recharge your account ',
+  input: 'number',
+  showCancelButton: true,
+  confirmButtonText: 'Confirm',
+  confirmButtonColor: '#f05e8a',
+  showLoaderOnConfirm: true,
+  preConfirm: (amount)=> addMoney(amount),
+  allowOutsideClick: () => !Swal.isLoading()
+})}>Add Now</button>             
                 </div>
                
             </div>
