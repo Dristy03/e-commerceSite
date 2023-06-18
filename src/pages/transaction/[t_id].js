@@ -184,9 +184,9 @@ export default function Transaction() {
            </h1>
     <hr></hr>
        {transaction.buyer === localStorage.getItem('email') ? <div className={styles.status}>
-       <BsCheck color="green" size="30px"/> <p style={{'color':"green"}}> You have already paid for the products. Please wait for the supplier to send your products. </p>
+       <BsCheck color="green" size="30px"/> <h3 style={{'color':"green"}}> You have already paid for the products. Please wait for the supplier to send your products. </h3>
        </div> : <div className={styles.status}>
-       <BsCheck color="green" size="30px"/> <p style={{'color':"green"}}> Buyer has already paid for the products. Please send the required package to user address and confirm it below </p>
+       <BsCheck color="green" size="30px"/> <h3 style={{'color':"green"}}> Buyer has already paid for the products. Please send the required package to user address and confirm it below </h3>
        </div>}
        
 
@@ -196,7 +196,7 @@ export default function Transaction() {
        (transaction.supplier_verified === 0 ? <div style={{alignItems:"center", width:"100%",display: "flex", justifyContent: "space-around"}}><div className={styles.box}>
        <h3> Please confirm after you have sent the products to the user.  <button onClick={supplier_verify} style={{backgroundColor:'green', marginTop: 10, padding: 5, borderRadius: 5}}>Confirm</button>  <button onClick={cancel} style={{backgroundColor:'red', marginTop: 10, padding: 5, borderRadius: 5}}>Cancel</button></h3>
        </div> </div>: <div className={styles.status}>
-       <BsClock color="orange" size="20px"/> <p style={{'color':"orange", marginLeft: 10}}> Please wait for the user to receive the product and confirm it.</p>
+       <BsClock color="orange" size="20px"/> <h3 style={{'color':"orange", marginLeft: 10}}> Please wait for the user to receive the product and confirm it.</h3>
        </div> 
        )}
        {
@@ -204,20 +204,20 @@ export default function Transaction() {
        (transaction.buyer_verified === 0 ?<div style={{alignItems:"center", width:"100%",display: "flex", justifyContent: "space-around"}}><div className={styles.box}>
         <h3> Please confirm if you have received the products.<br></br>  <button onClick={buyer_verify} style={{backgroundColor:'green', marginTop: 10, padding: 5, borderRadius: 5}}>Confirm</button><br/><p style={{color:"black", fontSize:"15px", fontWeight:200}}>If you have not received the products after a long time, contact an admin.</p></h3>
        </div> </div>: <div className={styles.status}>
-       <BsCheck color="green" size="30px"/> <p style={{'color':"green"}}>You have successfully received the product</p>
+       <BsCheck color="green" size="30px"/> <h3 style={{'color':"green"}}>You have successfully received the product</h3>
        </div> 
        )}
        
        {
         transaction.completed === 1 && transaction.supplier_verified === 1 && transaction.buyer_verified === 1 && 
         <div className={styles.status}>
-       <BsCheck color="green" size="30px"/> <p style={{'color':"green"}}> The transaction was successful. </p>
+       <BsCheck color="green" size="30px"/> <h3 style={{'color':"green"}}> The transaction was successful. </h3>
        </div>
        }
        {
         transaction.completed === 1 && transaction.supplier_verified === 0 && transaction.buyer_verified === 0 && 
         <div className={styles.status}>
-        <BsX color="red" size="30px"/><p style={{'color':"red"}}> The transaction was cancelled. </p>
+        <BsX color="red" size="30px"/><h3 style={{'color':"red"}}> The transaction was cancelled. </h3>
        </div>
        }
       </div>
