@@ -196,7 +196,7 @@ export default function Transaction() {
        (transaction.supplier_verified === 0 ? <div style={{alignItems:"center", width:"100%",display: "flex", justifyContent: "space-around"}}><div className={styles.box}>
        <h3> Please confirm after you have sent the products to the user.  <button onClick={supplier_verify} style={{backgroundColor:'green', marginTop: 10, padding: 5, borderRadius: 5}}>Confirm</button>  <button onClick={cancel} style={{backgroundColor:'red', marginTop: 10, padding: 5, borderRadius: 5}}>Cancel</button></h3>
        </div> </div>: <div className={styles.status}>
-       <BsClock color="yellow" size="20px"/> <p style={{'color':"yellow", marginLeft: 10}}> Please wait for the user to receive the product and confirm it.</p>
+       <BsClock color="orange" size="20px"/> <p style={{'color':"orange", marginLeft: 10}}> Please wait for the user to receive the product and confirm it.</p>
        </div> 
        )}
        {
